@@ -13,10 +13,16 @@ export default class Auth {
 
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.signIn = this.signIn.bind(this);
+    this.signOut = this.signOut.bind(this);
   }
 
   signIn() {
     this.auth0.authorize();
+  }
+  signOut() {
+    this.auth0.logout({
+      returnTo: "http://localhost:3000/logout"
+    });
   }
 
   getProfile() {

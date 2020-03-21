@@ -58,7 +58,8 @@ const UserContextProvider = props => {
     <UserContext.Provider
       value={{
         ...state,
-        handleLogin: auth.signIn
+        handleLogin: auth.signIn,
+        handleLogout: auth.signOut
       }}
     >
       {props.children}
@@ -101,13 +102,19 @@ const App = () => (
                   <p>
                     {user.isAuthenticated ? (
                       !meetup.subscribed ? (
-                        <button onClick={meetup.handleSubscribe}>
-                          Subscribe
-                        </button>
+                        <div>
+                          <button onClick={meetup.handleSubscribe}>
+                            Subscribe
+                          </button>
+                          <button onClick={user.handleLogout}>Logout</button>
+                        </div>
                       ) : (
-                        <button onClick={meetup.handleUnSubscribe}>
-                          Unsubscribe
-                        </button>
+                        <div>
+                          <button onClick={meetup.handleUnSubscribe}>
+                            Unsubscribe
+                          </button>
+                          <button onClick={user.handleLogout}>Logout</button>
+                        </div>
                       )
                     ) : (
                       <button onClick={user.handleLogin}>Login</button>
